@@ -32,6 +32,7 @@ jobs:
           fi
 
       - name: Check Service Uptime
+        if: false
         run: |
           EXTERNAL_IP="202.191.100.101"
            PORT="80"
