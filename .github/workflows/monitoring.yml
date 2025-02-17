@@ -33,13 +33,14 @@ jobs:
 
       - name: Check Service Uptime
         run: |
-          SERVICE="https://your-service-url.com"
-          STATUS_CODE=$(curl -o /dev/null -s -w "%{http_code}\n" "$SERVICE")
+          EXTERNAL_IP="202.191.100.101"
+           PORT="80"
+          STATUS_CODE=$(curl -o /dev/null -s -w "%{http_code}\n" "http://$EXTERNAL_IP:$PORT")
           if [ "$STATUS_CODE" -ne 200 ]; then
             echo "Service is down with status code $STATUS_CODE."
             exit 1
           else
-            echo "Service is up and running."
+            echo "Service is up and running at $EXTERNAL_IP."
           fi
 
       - name: Parse Logs for Errors
